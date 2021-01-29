@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    {{ this.$store.state }}
+    <router-link to="/" tag="li" active-class="active"><a>Back</a></router-link>
     <h2>Please fill the form</h2>
 
     <div class="container">
@@ -30,8 +30,7 @@
 </template>
 
 <script>
-import { getQuestions, postAnswers } from "../actions/Actions";
-import { FETCH_MASTHEAD, ADD_MASTHEAD } from "../store/actions.type";
+import { ADD_MASTHEAD } from "../store/actions.type";
 export default {
   data() {
     return {
@@ -46,8 +45,10 @@ export default {
 
   methods: {
     addMasthead(name, gTag, notes) {
-      console.log("fetch articles", name);
       this.$store.dispatch(ADD_MASTHEAD, { name, gTag, notes });
+      this.name = "";
+      this.gTag = "";
+      this.notes = "";
     },
   },
 };

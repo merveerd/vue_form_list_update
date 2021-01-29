@@ -1,4 +1,4 @@
-import { FETCH_MASTHEADS, ADD_MASTHEAD } from "./actions.type";
+import { GET_MASTHEADS, ADD_MASTHEAD } from "./actions.type";
 import { FETCH_START, FETCH_END, UPDATE_MASTHEAD_LIST } from "./mutations.type";
 
 const state = {
@@ -16,16 +16,33 @@ const getters = {
 };
 
 const actions = {
-  [FETCH_MASTHEADS]({ commit }, params) {
+  [GET_MASTHEADS]({ commit }, params) {
     commit(FETCH_START);
-
-    // return axios function
-    //   .then(({ data }) => {
-    commit(FETCH_END, { MASTHEADS: "TEST" });
-    //   })
-    //   .catch(error => {
-    //     throw new Error(error);
-    //   });
+    if (state.mastheads.length == 0) {
+      // return axios function
+      //   .then(({ data }) => {
+      commit(FETCH_END, [
+        {
+          name: "test1",
+          gTag: "tag",
+          notes: "djfkdjk"
+        },
+        {
+          name: "test2",
+          gTag: "tag2",
+          notes: "djfkdjk"
+        },
+        {
+          name: "test3",
+          gTag: "tag3",
+          notes: "djfkdjk"
+        }
+      ]);
+      //   })
+      //   .catch(error => {
+      //     throw new Error(error);
+      //   });
+    }
   },
 
   async [ADD_MASTHEAD]({ commit }, params) {
@@ -41,13 +58,13 @@ const mutations = {
   [FETCH_END](state, mastheads) {
     state.mastheads = mastheads;
     state.isLoading = false;
-    console.log("fetch end", state);
+    console.log("fetch end", state.mastheads);
   },
   [UPDATE_MASTHEAD_LIST](state, masthead) {
     let temp = [...state.mastheads];
     temp.push(masthead);
     state.mastheads = [...temp];
-    console.log(state.mastheads);
+    console.log("updated", state.mastheads);
   }
 };
 
