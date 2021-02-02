@@ -1,20 +1,20 @@
 <template>
   <div>
-    <h1>Masthead</h1>
-    {{ this.$store.state.mastheadList.mastheads }}
+    <h1>Mastheads</h1>
+    <!-- {{ this.$store.state.mastheadList.mastheads }} -->
     <ul class="masthead-container">
       <li
         class="masthead-wrapper"
         v-for="item in this.$store.state.mastheadList.mastheads"
         :key="item.name"
       >
-        {{ item.name }}
-        {{ item.notes }}
+        <p class="masthead-name">{{ item.name }}</p>
+        <p class="masthead-item">{{ item.notes }}</p>
       </li>
     </ul>
 
     <ul>
-      <router-link to="/masthead" tag="li" active-class="active"
+      <router-link to="/masthead" active-class="active"
         ><a>Add Masthead</a></router-link
       >
     </ul>
@@ -25,9 +25,6 @@
 import { GET_MASTHEADS } from "../store/actions.type";
 export default {
   name: "home",
-  props: {
-    msg: String,
-  },
 
   data() {
     return {
@@ -37,10 +34,6 @@ export default {
   created() {
     //API FETCH
     this.$store.dispatch(GET_MASTHEADS);
-  },
-
-  mounted() {
-    console.log("home 2");
   },
 };
 </script>
@@ -60,12 +53,14 @@ li {
 }
 a {
   color: #42b983;
+  font-size: 1.4rem;
 }
 
 .masthead-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .masthead-wrapper {
@@ -76,5 +71,14 @@ a {
   height: 10rem;
   border: 1px solid black;
   margin: 0.5rem;
+}
+.masthead-name {
+  color: orchid;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.masthead-item {
+  margin: 0;
 }
 </style>

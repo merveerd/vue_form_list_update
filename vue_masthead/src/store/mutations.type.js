@@ -1,6 +1,6 @@
 export const FETCH_END = "setData";
 export const FETCH_START = "setLoading";
-export const PURGE_AUTH = "logout";
+export const LOGOUT = "logout";
 export const SET_MASTHEAD = "setMasthead";
 export const SET_AUTH = "setUser";
 

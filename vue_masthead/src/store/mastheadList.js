@@ -46,7 +46,7 @@ const actions = {
   },
 
   async [ADD_MASTHEAD]({ commit }, params) {
-    const { data } = { data: params }; // await axios function;
+    const { data } = { data: params }; // await axios function THEN go to back page;
     commit(UPDATE_MASTHEAD_LIST, data);
   }
 };
@@ -58,13 +58,11 @@ const mutations = {
   [FETCH_END](state, mastheads) {
     state.mastheads = mastheads;
     state.isLoading = false;
-    console.log("fetch end", state.mastheads);
   },
   [UPDATE_MASTHEAD_LIST](state, masthead) {
     let temp = [...state.mastheads];
     temp.push(masthead);
     state.mastheads = [...temp];
-    console.log("updated", state.mastheads);
   }
 };
 
