@@ -7,5 +7,5 @@ export const getMastheads = params => {
 };
 
 export const postMasthead = params => {
-  post(base_url.concat("mastheads"), params);
+  post(base_url.concat("/masthead"), params);
 };
