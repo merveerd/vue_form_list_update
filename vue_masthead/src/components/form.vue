@@ -20,6 +20,7 @@
         v-on:keypress.enter="addMasthead(name, gTag, notes)"
       />
     </form>
+    <h1 v-if="!isValid">Please fill the required fields, name and gtag</h1>
   </div>
 </template>
 <script>
@@ -29,6 +30,7 @@ export default {
 
   data() {
     return {
+      isValid: true,
       name: "",
       gTag: "",
       notes: "",
@@ -37,12 +39,15 @@ export default {
 
   methods: {
     addMasthead(name, gTag, notes) {
-      this.$store.dispatch(ADD_MASTHEAD, { name, gTag, notes });
-      this.name = "";
-      this.gTag = "";
-      this.notes = "";
-
-      this.$router.push("/");
+      if (name && gTag) {
+        this.$store.dispatch(ADD_MASTHEAD, { name, gTag, notes });
+        this.name = "";
+        this.gTag = "";
+        this.notes = "";
+        this.$router.push("/");
+      } else {
+        this.isValid = false;
+      }
     },
   },
 };
